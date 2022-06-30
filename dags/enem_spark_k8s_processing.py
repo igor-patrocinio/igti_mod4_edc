@@ -46,97 +46,97 @@ with DAG(
         do_xcom_push=True,
     )
 
-    converte_parquet_monitor = SparkKubernetesSensor(
-        task_id='converte_parquet_monitor',
-        namespace="airflow",
-        application_name="{{ task_instance.xcom_pull(task_ids='converte_parquet')['metadata']['name'] }}",
-        kubernetes_conn_id="kubernetes_default",
-    )
+    # converte_parquet_monitor = SparkKubernetesSensor(
+    #     task_id='converte_parquet_monitor',
+    #     namespace="airflow",
+    #     application_name="{{ task_instance.xcom_pull(task_ids='converte_parquet')['metadata']['name'] }}",
+    #     kubernetes_conn_id="kubernetes_default",
+    # )
 
-    anonimiza_inscricao = SparkKubernetesOperator(
-        task_id='anonimiza_inscricao',
-        namespace="airflow",
-        application_file="enem_anonimiza_inscricao.yaml",
-        kubernetes_conn_id="kubernetes_default",
-        do_xcom_push=True,
-    )
+    # anonimiza_inscricao = SparkKubernetesOperator(
+    #     task_id='anonimiza_inscricao',
+    #     namespace="airflow",
+    #     application_file="enem_anonimiza_inscricao.yaml",
+    #     kubernetes_conn_id="kubernetes_default",
+    #     do_xcom_push=True,
+    # )
 
-    anonimiza_inscricao_monitor = SparkKubernetesSensor(
-        task_id='anonimiza_inscricao_monitor',
-        namespace="airflow",
-        application_name="{{ task_instance.xcom_pull(task_ids='anonimiza_inscricao')['metadata']['name'] }}",
-        kubernetes_conn_id="kubernetes_default",
-    )
+    # anonimiza_inscricao_monitor = SparkKubernetesSensor(
+    #     task_id='anonimiza_inscricao_monitor',
+    #     namespace="airflow",
+    #     application_name="{{ task_instance.xcom_pull(task_ids='anonimiza_inscricao')['metadata']['name'] }}",
+    #     kubernetes_conn_id="kubernetes_default",
+    # )
 
-    trigger_crawler_inscricao = PythonOperator(
-        task_id='trigger_crawler_inscricao',
-        python_callable=trigger_crawler_inscricao_func,
-    )
+    # trigger_crawler_inscricao = PythonOperator(
+    #     task_id='trigger_crawler_inscricao',
+    #     python_callable=trigger_crawler_inscricao_func,
+    # )
 
-    agrega_idade = SparkKubernetesOperator(
-        task_id='agrega_idade',
-        namespace="airflow",
-        application_file="enem_agrega_idade.yaml",
-        kubernetes_conn_id="kubernetes_default",
-        do_xcom_push=True,
-    )
+    # agrega_idade = SparkKubernetesOperator(
+    #     task_id='agrega_idade',
+    #     namespace="airflow",
+    #     application_file="enem_agrega_idade.yaml",
+    #     kubernetes_conn_id="kubernetes_default",
+    #     do_xcom_push=True,
+    # )
 
-    agrega_idade_monitor = SparkKubernetesSensor(
-        task_id='agrega_idade_monitor',
-        namespace="airflow",
-        application_name="{{ task_instance.xcom_pull(task_ids='agrega_idade')['metadata']['name'] }}",
-        kubernetes_conn_id="kubernetes_default",
-    )
+    # agrega_idade_monitor = SparkKubernetesSensor(
+    #     task_id='agrega_idade_monitor',
+    #     namespace="airflow",
+    #     application_name="{{ task_instance.xcom_pull(task_ids='agrega_idade')['metadata']['name'] }}",
+    #     kubernetes_conn_id="kubernetes_default",
+    # )
 
-    agrega_sexo = SparkKubernetesOperator(
-        task_id='agrega_sexo',
-        namespace="airflow",
-        application_file="enem_agrega_sexo.yaml",
-        kubernetes_conn_id="kubernetes_default",
-        do_xcom_push=True,
-    )
+    # agrega_sexo = SparkKubernetesOperator(
+    #     task_id='agrega_sexo',
+    #     namespace="airflow",
+    #     application_file="enem_agrega_sexo.yaml",
+    #     kubernetes_conn_id="kubernetes_default",
+    #     do_xcom_push=True,
+    # )
 
-    agrega_sexo_monitor = SparkKubernetesSensor(
-        task_id='agrega_sexo_monitor',
-        namespace="airflow",
-        application_name="{{ task_instance.xcom_pull(task_ids='agrega_sexo')['metadata']['name'] }}",
-        kubernetes_conn_id="kubernetes_default",
-    )
+    # agrega_sexo_monitor = SparkKubernetesSensor(
+    #     task_id='agrega_sexo_monitor',
+    #     namespace="airflow",
+    #     application_name="{{ task_instance.xcom_pull(task_ids='agrega_sexo')['metadata']['name'] }}",
+    #     kubernetes_conn_id="kubernetes_default",
+    # )
 
-    agrega_notas = SparkKubernetesOperator(
-        task_id='agrega_notas',
-        namespace="airflow",
-        application_file="enem_agrega_notas.yaml",
-        kubernetes_conn_id="kubernetes_default",
-        do_xcom_push=True,
-    )
+    # agrega_notas = SparkKubernetesOperator(
+    #     task_id='agrega_notas',
+    #     namespace="airflow",
+    #     application_file="enem_agrega_notas.yaml",
+    #     kubernetes_conn_id="kubernetes_default",
+    #     do_xcom_push=True,
+    # )
 
-    agrega_notas_monitor = SparkKubernetesSensor(
-        task_id='agrega_notas_monitor',
-        namespace="airflow",
-        application_name="{{ task_instance.xcom_pull(task_ids='agrega_notas')['metadata']['name'] }}",
-        kubernetes_conn_id="kubernetes_default",
-    )
+    # agrega_notas_monitor = SparkKubernetesSensor(
+    #     task_id='agrega_notas_monitor',
+    #     namespace="airflow",
+    #     application_name="{{ task_instance.xcom_pull(task_ids='agrega_notas')['metadata']['name'] }}",
+    #     kubernetes_conn_id="kubernetes_default",
+    # )
 
-    join_final = SparkKubernetesOperator(
-        task_id='join_final',
-        namespace="airflow",
-        application_file="enem_join_final.yaml",
-        kubernetes_conn_id="kubernetes_default",
-        do_xcom_push=True,
-    )
+    # join_final = SparkKubernetesOperator(
+    #     task_id='join_final',
+    #     namespace="airflow",
+    #     application_file="enem_join_final.yaml",
+    #     kubernetes_conn_id="kubernetes_default",
+    #     do_xcom_push=True,
+    # )
 
-    join_final_monitor = SparkKubernetesSensor(
-        task_id='join_final_monitor',
-        namespace="airflow",
-        application_name="{{ task_instance.xcom_pull(task_ids='join_final')['metadata']['name'] }}",
-        kubernetes_conn_id="kubernetes_default",
-    )
+    # join_final_monitor = SparkKubernetesSensor(
+    #     task_id='join_final_monitor',
+    #     namespace="airflow",
+    #     application_name="{{ task_instance.xcom_pull(task_ids='join_final')['metadata']['name'] }}",
+    #     kubernetes_conn_id="kubernetes_default",
+    # )
 
-    trigger_crawler_final = PythonOperator(
-        task_id='trigger_crawler_final',
-        python_callable=trigger_crawler_final_func,
-    )
+    # trigger_crawler_final = PythonOperator(
+    #     task_id='trigger_crawler_final',
+    #     python_callable=trigger_crawler_final_func,
+    # )
 converte_parquet
 # converte_parquet >> converte_parquet_monitor >> anonimiza_inscricao >> anonimiza_inscricao_monitor
 # anonimiza_inscricao_monitor >> trigger_crawler_inscricao

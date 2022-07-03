@@ -29,7 +29,7 @@ if __name__ == "__main__":
         .read
         .format("csv")
         .options(header='true', inferSchema='true', delimiter=';')
-        .load("s3a://dl-landing-zone-539445819060/enem/")
+        .load("s3a://dl-landing-zone/enem/")
     )
     
     df.printSchema()
